@@ -9,7 +9,7 @@ form {
     min-width: 500px;
     
 }
-input {
+input, select {
     padding: 10px;
     margin: 10px;
 }

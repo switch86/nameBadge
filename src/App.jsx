@@ -2,6 +2,9 @@ import './App.css'
 import React from "react"
 import Badge from "./components/Badge"
 
+
+const colorsArray = ["tan", "red", "white", "grey",  "olive", "cyan", "turquoise", "pink"]
+
 function App() {
   const [users, setUsers] = React.useState([])
   const [currentUser, setCurrentUser] = React.useState({
@@ -11,7 +14,8 @@ function App() {
     phone: "",
     birthLoc: "",
     food: "",
-    about: ""
+    about: "",
+    color: "tan",
   })
   
   function handleChange(event) {
@@ -27,6 +31,7 @@ function App() {
 
   function handleSubmit(event) {
     event.preventDefault()
+    console.log(currentUser)
     setUsers(prevUsers => {
       return [
         ...prevUsers, 
@@ -41,24 +46,28 @@ function App() {
       phone: "",
       birthLoc: "",
       food: "",
-      about: ""
+      about: "",
+      color: "tan"
     })
   }
 
 
 
-  let badgeHTML = users.map(user => {
+  let badgeHTML = users.map((user, index) => {
     return (
-      <Badge 
-        {...user} />
-    )
-  })
-  console.log(currentUser)
-  console.log(users)
-  console.log(badgeHTML)
+      <Badge  
+      {...user}
+      key={index} />
+      )
+    })
+    let optionsHTML = colorsArray.map((color, index) => {
+      return (
+        <option key={index} value={color}>{color}</option>
+    )})
+
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
+      <form style={{background: currentUser.color}} onSubmit={handleSubmit}>
         <input required
             type="text" 
             name="firstName" 
@@ -108,6 +117,9 @@ function App() {
             onChange={handleChange}
             value={currentUser.phone}>
         </input>
+              <select name="color" value={currentUser.color} id="ddlViewBy" onChange={handleChange}>
+                {optionsHTML}
+              </select> 
         <button>Submit</button>
       </form>
       {badgeHTML}
