@@ -67,6 +67,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1 className="Header">Create Your Own Name Badge</h1>
       <form style={{background: currentUser.color}} onSubmit={handleSubmit}>
         <input required
             type="text" 

@@ -9,6 +9,9 @@ form {
     min-width: 500px;
     
 }
+.Header {
+    text-align: center;
+}
 input, select {
     padding: 10px;
     margin: 10px;
